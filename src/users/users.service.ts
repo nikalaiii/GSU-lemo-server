@@ -25,7 +25,8 @@ export class UsersService {
       posts: [],
     };
 
-    return this.usersRepo.create(newUser);
+    const created = this.usersRepo.create(newUser);
+    return this.usersRepo.save(created);
   }
 
   async findAll() {

@@ -1,0 +1,111 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Comment {
+  author: User!
+  authorId: String!
+  content: String!
+  contextId: String!
+  contextType: CommentContextType!
+  id: String!
+}
+
+enum CommentContextType {
+  POST
+  USER
+}
+
+input CreateCommentInput {
+  authorId: String!
+  content: String!
+  contextId: String!
+  contextType: CommentContextType!
+}
+
+input CreatePostInput {
+  authorId: String!
+  content: String!
+  title: String!
+}
+
+input CreateUserInput {
+  avatar: String!
+  email: String!
+  name: String!
+}
+
+input DeletePostInput {
+  postId: String!
+  userId: String!
+}
+
+input EditPostInput {
+  content: String!
+  postId: String!
+  title: String!
+  userId: String!
+}
+
+type Mutation {
+  createComment(createCommentInput: CreateCommentInput!): Comment!
+  createPost(createPostInput: CreatePostInput!): Post!
+  createUser(createUserInput: CreateUserInput!): User!
+  editPost(editPostInput: EditPostInput!): Post!
+  likePost(postId: String!, userId: String!): Post!
+  removeComment(id: String!): String!
+  removePost(deletePostInput: DeletePostInput!): String!
+  removeUser(id: String!): User!
+  updateComment(updateCommentInput: UpdateCommentInput!): Comment!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  writeComment(writeCommentUserInput: WriteCommentUserInput!): User!
+}
+
+type Post {
+  author: User
+  authorId: String!
+  comments: [Comment!]
+  content: String!
+  id: String!
+  likes: [String!]!
+  title: String!
+}
+
+type Query {
+  comment(id: String!): Comment!
+  comments: [Comment!]!
+  post(id: String!): Post!
+  posts: [Post!]!
+  user(id: String!): User!
+  users: [User!]!
+}
+
+input UpdateCommentInput {
+  authorId: String
+  content: String
+  contextId: String
+  contextType: CommentContextType
+  id: String!
+}
+
+input UpdateUserInput {
+  avatar: String!
+  email: String!
+  id: Int!
+  name: String!
+}
+
+type User {
+  avatar: String
+  comments: [Comment!]
+  email: String!
+  id: String!
+  name: String!
+  posts: [Post!]
+}
+
+input WriteCommentUserInput {
+  authorId: String!
+  content: String!
+  userId: String!
+}
